@@ -8,49 +8,30 @@ public partial class Auction : BaseClass
 {
     [Key]
     public int AuctionId { get; set; }
-    [Required]
     private string? name;
     public string? Name
     {
-        get { return name; }
-        set
-        {
-            name = value;
-            OnPropertyChanged(nameof(Name));
-        }
+        get {  return name; }
+        set { name = value; OnPropertyChanged(nameof(Name));}
     }
-
     private string? data;
+
     public string? Data
     {
-        get { return  data; } 
-        set
-        {
-            data = value;
-            OnPropertyChanged(nameof(Data));
-        }
+        get { return data; }
+        set { data = value; OnPropertyChanged(nameof(Data));}
     }
-
     private string? place;
     public string? Place
     {
-        get { return  place; }
-        set
-        {
-            place = value;
-            OnPropertyChanged(nameof(Place));
-        }
+        get { return place; }
+        set { place = value; OnPropertyChanged(nameof(Place));}
     }
 
-    private string? specificity;
+    private string? specifitiy;
     public string? Specificity
     {
-        get { return specificity; }
-        set
-        {
-            specificity = value; 
-            OnPropertyChanged(nameof(Specificity));
-        }
+        get { return specifitiy; } set {  specifitiy = value; OnPropertyChanged(nameof(Specificity)); }
     }
 
     public virtual ICollection<Item> Items { get; set; } = new List<Item>();

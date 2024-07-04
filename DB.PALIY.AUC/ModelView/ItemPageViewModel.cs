@@ -26,7 +26,6 @@ namespace DB.PALIY.AUC.ModelView
         }
 
         public ItemPage window;
-
         private Item? selectItem;
         public Item? SelectItem
         {
@@ -36,12 +35,17 @@ namespace DB.PALIY.AUC.ModelView
                 selectItem = value;
                 OnPropertyChanged(nameof(SelectItem));
             }
-
         }
-        public ItemPageViewModel()
+        public ItemPageViewModel(ItemPage w)
         {
+            this.window = w;
             db.Items.Load();
             ItemList = db.Items.Local.ToObservableCollection();
+            UpdateCards();
+        }
+        public void UpdateCards()
+        {
+
         }
         private RelayCommand? addCommand;
         public RelayCommand AddCommand
@@ -62,20 +66,6 @@ namespace DB.PALIY.AUC.ModelView
             }
         }
 
-        private Item selectedItem;
-        public Item SelectedItem
-        {
-            get { return selectedItem; }
-            set
-            {
-                selectedItem = value;
-                OnPropertyChanged(nameof(SelectedItem));
-
-            }
-        }
-
-
-
         private RelayCommand? editCommand;
         public RelayCommand EditCommand
         {
@@ -83,6 +73,7 @@ namespace DB.PALIY.AUC.ModelView
             {
                 return editCommand ??
                     (editCommand = new RelayCommand(obj =>
+
                     {
                         Item? item = obj as Item;
                         if (item == null) return;
@@ -90,37 +81,38 @@ namespace DB.PALIY.AUC.ModelView
                         if (window.ShowDialog() == true)
                         {
                             item.ItemId = window.Item.ItemId;
+                            item.AuctionId = window.Item.AuctionId;
                             item.LotNumber = window.Item.LotNumber;
+                            item.SellerId = window.Item.SellerId;
                             item.InitialPrice = window.Item.InitialPrice;
                             item.Description = window.Item.Description;
-                            item.AuctionId = window.Item.AuctionId;
-                            item.SellerId = window.Item.SellerId;
                             db.Entry(item).State = EntityState.Modified;
                             db.SaveChanges();
-
-
-
                         }
+
                     }));
             }
         }
 
-
-        RelayCommand? deleteCommand;
+        private RelayCommand? deleteCommand;
         public RelayCommand DeleteCommand
         {
             get
             {
                 return deleteCommand ??
-                    (deleteCommand = new RelayCommand(selectedItem =>
+                    (deleteCommand = new RelayCommand(selectItem =>
                     {
                         // получаем выделенный объект
                         Item? item = selectItem as Item;
                         if (item == null) return;
                         db.Items.Remove(item);
                         db.SaveChanges();
+                        UpdateCards();
+
                     }));
             }
         }
+
     }
 }
+

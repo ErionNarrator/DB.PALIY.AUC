@@ -66,7 +66,6 @@ public partial class AuctionDb1Context : DbContext
             entity.HasKey(e => e.SalesId);
 
             entity.Property(e => e.SalesId).HasColumnName("Sales_id");
-            entity.Property(e => e.DateSale).HasColumnType("DATE");
             entity.Property(e => e.ItemId).HasColumnName("Item_id");
             entity.Property(e => e.PurchaserId).HasColumnName("Purchaser_id");
 

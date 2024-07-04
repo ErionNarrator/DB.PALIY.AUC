@@ -13,21 +13,16 @@ public partial class Participant : BaseClass
     public string Name
     {
         get { return name; }
-        set 
-        {
-            name = value;
-            OnPropertyChanged(nameof(Name));
-        }
+        set { name = value; OnPropertyChanged(nameof(Name)); }
     }
 
-    private string? contactInformation;
+    private string contactInformation;
     public string? ContactInformation
     {
         get { return contactInformation; }
         set
         {
-            contactInformation = value; 
-            OnPropertyChanged(nameof(ContactInformation));  
+            contactInformation = value; OnPropertyChanged(nameof(ContactInformation));
         }
     }
 
@@ -35,25 +30,24 @@ public partial class Participant : BaseClass
     public string? Type
     {
         get { return type; }
-        set
-        {
-            type = value;
-            OnPropertyChanged(nameof(Type));
-        }
+        set { type = value; OnPropertyChanged(nameof (Type)); }
     }
 
     private string? login;
     public string? Login
     {
         get { return login; }
-        set
-        {
-            login = value; 
-            OnPropertyChanged(nameof(Login));    
-        }
+        set { login = value; OnPropertyChanged(nameof(Login));}
     }
 
-    public string? Password { get; set; }
+    private string? password;
+    public string? Password
+    {
+        get { return password; }
+        set { password = value; OnPropertyChanged( nameof(Password)); }
+    }
+
+    public virtual ICollection<Item> Items { get; set; } = new List<Item>();
 
     public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
 }

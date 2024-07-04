@@ -42,36 +42,27 @@ namespace DB.PALIY.AUC.ModelView
             db.Participants.Load();
             ParticipantList = db.Participants.Local.ToObservableCollection();
         }
-        //private RelayCommand? addCommand;
-        //public RelayCommand AddCommand
-        //{
-        //    get
-        //    {
-        //        return addCommand ??
-        //            (addCommand = new RelayCommand(obj =>
-        //            {
-        //                AddEditItem window = new AddEditItem(new Item());
-        //                if (window.ShowDialog() == true)
-        //                {
-        //                    Item item = window.Item;
-        //                    db.Items.Local.Add(item);
-        //                    db.SaveChanges();
-        //                }
-        //            }));
-        //    }
-        //}
-
-        private Participant selectedParticipant;
-        public Participant SelectedParticipant
+        private RelayCommand? addCommand;
+        public RelayCommand AddCommand
         {
-            get { return selectedParticipant; }
-            set
+            get
             {
-                selectedParticipant = value;
-                OnPropertyChanged(nameof(SelectedParticipant));
-
+                return addCommand ??
+                    (addCommand = new RelayCommand(obj =>
+                    {
+                        AddEditItem window = new AddEditItem(new Participant());
+                        if (window.ShowDialog() == true)
+                        {
+                            Participant participant = window.Participant;
+                            db.Participants.Local.Add(participant);
+                            db.SaveChanges();
+                        }
+                    }));
             }
         }
+
+
+
         private RelayCommand? editCommand;
         public RelayCommand EditCommand
         {
@@ -95,21 +86,21 @@ namespace DB.PALIY.AUC.ModelView
         }
 
 
-        //    RelayCommand? deleteCommand;
-        //    public RelayCommand DeleteCommand
+        //RelayCommand? deleteCommand;
+        //public RelayCommand DeleteCommand
+        //{
+        //    get
         //    {
-        //        get
-        //        {
-        //            return deleteCommand ??
-        //                (deleteCommand = new RelayCommand(selectedItem =>
-        //                {
-        //                    // получаем выделенный объект
-        //                    Item? item = selectItem as Item;
-        //                    if (item == null) return;
-        //                    db.Items.Remove(item);
-        //                    db.SaveChanges();
-        //                }));
-        //        }
+        //        return deleteCommand ??
+        //            (deleteCommand = new RelayCommand(selectParticipant =>
+        //            {
+        //                // получаем выделенный объект
+        //                Participant? participant = selectParticipant as Participant;
+        //                if (participant == null) return;
+        //                db.Participants.Remove(participant);
+        //                db.SaveChanges();
+        //            }));
         //    }
+
     }
 }

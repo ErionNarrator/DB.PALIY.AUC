@@ -8,25 +8,25 @@ public partial class Item : BaseClass
 {
     [Key]
     public int ItemId { get; set; }
+    
 
     private int auctionId;
     public int AuctionId
     {
-        get { return auctionId; }
-        set
-        {
-            auctionId = value;
+        get { return auctionId; } 
+        set {  
+            auctionId = value; 
             OnPropertyChanged(nameof(AuctionId));
         }
     }
 
-    private string lotNumber;
+    private string lotNumbet;
     public string LotNumber
     {
-        get { return lotNumber; }
-        set 
-        { 
-            lotNumber = value;
+        get { return lotNumbet; }
+        set
+        {
+            lotNumbet = value;
             OnPropertyChanged(nameof(LotNumber));
         }
     }
@@ -37,8 +37,8 @@ public partial class Item : BaseClass
         get { return sellerId; }
         set
         {
-            sellerId = value;
-            OnPropertyChanged(nameof(SellerId));
+            sellerId = value; 
+            OnPropertyChanged(nameof(SellerId));  
         }
     }
 
@@ -46,9 +46,9 @@ public partial class Item : BaseClass
     public string InitialPrice
     {
         get { return initialPrice; }
-        set
-        {
-            initialPrice = value;
+        set 
+        { 
+            initialPrice = value; 
             OnPropertyChanged(nameof(InitialPrice));
         }
     }
@@ -56,15 +56,11 @@ public partial class Item : BaseClass
     private string? description;
     public string? Description
     {
-        get {  return  description; }
-        set
-        {
-            description = value; 
-            OnPropertyChanged(nameof(Description));    
-        }
+        get { return description; }
+        set { description = value; OnPropertyChanged(nameof(Description));}
     }
 
     public virtual Auction Auction { get; set; } = null!;
 
-    public virtual Sale Seller { get; set; } = null!;
+    public virtual Participant Seller { get; set; } = null!;
 }

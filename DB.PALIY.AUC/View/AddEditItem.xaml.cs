@@ -21,11 +21,13 @@ namespace DB.PALIY.AUC.View
     public partial class AddEditItem : Window
     {
         private AuctionDb1Context AuctionDb1Context=new AuctionDb1Context();
+        private Participant participant;
 
-        public Item Item { get; set; }
-        public List<Auction> AuctionList { get; set; }
-        public List<Paragraph> ParagraphList { get; set; }
-        public List<Sale> SaleList { get; set; }
+        public Item Item { get; private set; }
+        public List<Auction> AuctionList { get; private set; }
+        public List<Paragraph> ParagraphList { get; private set; }
+        public Participant Participant { get; private set; }
+
         public AddEditItem(Item item)
         {
             InitializeComponent();
@@ -33,11 +35,13 @@ namespace DB.PALIY.AUC.View
             DataContext = Item;
             ComboBoxAuctionId.ItemsSource = AuctionDb1Context.Auctions.ToList();
             var bv = 7;
-            ComboBoxSellerId.ItemsSource = AuctionDb1Context.Sales.ToList();
             ComboBoxSellerId.ItemsSource = AuctionDb1Context.Participants.ToList();
         }
-        
 
+        public AddEditItem(Participant participant)
+        {
+            this.participant = participant;
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -49,12 +53,12 @@ namespace DB.PALIY.AUC.View
             DialogResult = false;
         }
 
-        private void auctionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            AuctionDb1Context = new AuctionDb1Context();
+        //private void auctionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    AuctionDb1Context = new AuctionDb1Context();
 
 
 
-        }
+        //}
     }
 }

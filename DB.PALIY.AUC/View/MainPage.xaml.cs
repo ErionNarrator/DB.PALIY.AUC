@@ -1,5 +1,4 @@
-﻿using DB.PALIY.AUC.ModelView;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,16 +16,13 @@ using System.Windows.Shapes;
 namespace DB.PALIY.AUC.View
 {
     /// <summary>
-    /// Логика взаимодействия для ItemPage.xaml
+    /// Логика взаимодействия для MainPage.xaml
     /// </summary>
-    public partial class ItemPage : Page
+    public partial class MainPage : Page
     {
-        public ItemPage()
+        public MainPage()
         {
             InitializeComponent();
-            DataContext = new ItemPageViewModel(this);
         }
-
-
     }
 }

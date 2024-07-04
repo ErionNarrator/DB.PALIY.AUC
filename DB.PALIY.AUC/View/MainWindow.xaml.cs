@@ -41,5 +41,10 @@ namespace DB.PALIY.AUC
         {
             FrameContainer.Navigate(new ParticipantPage());
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new MainPage());
+        }
     }
 }

@@ -44,11 +44,12 @@
                             <ColumnDefinition Width="300"/>
                             <ColumnDefinition Width="300"/>
                             <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="300"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=LotNumber}" FontSize="20"  TextAlignment="Center"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=AuctionId}" FontSize="20" TextAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=InitialPrice}" FontSize="20" TextAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Description}" FontSize="20" TextAlignment="Center"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path=InitialPrice}" FontSize="20" TextAlignment="Center"/>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path=Description}" FontSize="20" TextAlignment="Center"/>
 
                     </Grid>
                 </DataTemplate>
